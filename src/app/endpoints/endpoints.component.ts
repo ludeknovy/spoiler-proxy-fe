@@ -61,4 +61,32 @@ export class EndpointsComponent implements OnInit {
     this.endpointsService.clearEndpoints();
   }
 
+  changeStatus(status, id) {
+    // change status for current data
+    const updatedEndpoints = this.endpointsFiltered.map(_ =>
+      _.id === id
+        ? { ..._, actualStatus: status }
+        : _
+    );
+    this.endpointList = updatedEndpoints;
+    this.endpointsFiltered = updatedEndpoints;
+    // send request to backend to actual state
+    this.endpointsService.changeStatusById(id, this.availableStatuses.find(_ => _.display === status).value)
+      .subscribe(
+        res => res,
+        err => this.endpointsService.fetchEndpointList());
+  }
+
+  getColor(status) {
+    const colors = [
+      { value: 'ON', color: '#36B37E' },
+      { value: 'OFF', color: '#FF5630' },
+      { value: 'NO_REPLY', color: '#FFAB00'},
+      { value: 'SLOW', color: '#00B8D9'}
+    ];
+    const color = colors.find((_) => _.value === status);
+    return color ? color.color : `grey`;
+
+  }
+
 }

@@ -31,4 +31,8 @@ export class EndpointsService {
   getStatus() {
     return this.endpointsApiService.getStatus();
   }
+
+  changeStatusById(id, status) {
+    return this.endpointsApiService.changeStatusById({connectionId: id, state: status });
+  }
 }

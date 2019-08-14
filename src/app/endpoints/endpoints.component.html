@@ -40,7 +40,7 @@
                   <tr *ngIf="!endpointList || endpointList.length === 0">
                     <td colspan="4" class="text-muted no-data">No Data...</td>
                   </tr>
-                  <tr *ngFor="let _ of mf.data">
+                  <tr *ngFor="let _ of mf.data;">
                     <td class="ellipsis">
                       {{_.id}}
                     </td>
@@ -51,7 +51,7 @@
                       {{_.connections}}
                     </td>
                     <td>
-                      <select type="text" (change)="changeStatus($event.target.value)" >
+                      <select type="text" (change)="changeStatus($event.target.value, _.id)" [ngStyle]="{'background-color': getColor(_.actualStatus)}" > 
                         <option *ngFor="let status of orderStatuses(_.actualStatus)" [value]="status">{{status}}</option>
                       </select>
                     </td>
