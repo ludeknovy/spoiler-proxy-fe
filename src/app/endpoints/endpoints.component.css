@@ -56,6 +56,9 @@ td {
 .tools {
   background-color: white;
   color: rgb(69, 81, 102);
+  box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
+  -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
 }
 
 .form-control {
@@ -71,4 +74,31 @@ td {
   border-bottom-style: solid;
   border-bottom-width: 0.5px;
   border-radius: 0px;
+  box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
+  -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
 }
+
+.clear-all:hover {
+  color: red
+}
+
+.refresh:hover {
+  color: #0052CC;
+}
+
+
+.items {
+  margin-top: 25px;
+}
+
+input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
+
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+

@@ -1,11 +1,14 @@
 export interface EndpointListResponse {
   endpointList: EndpointList[];
   endpointStatuses: EndpointStatuses[];
-  socksProxyRunning: boolean;
-  socksPort: string;
-  version: string;
 }
 
+
+export interface StatusResponse {
+  socksProxyRunning: boolean;
+  socksPort: number;
+  version: string;
+}
 
 interface EndpointList {
     id: string;

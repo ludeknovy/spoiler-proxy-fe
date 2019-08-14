@@ -9,54 +9,51 @@
                 <input class="form-control" id="label-filter" type="search" placeholder="search address"
                   (keyup)='search($event.target.value)'>
                 <div class="input-group-append">
-                  <button class="btn tools" type="button"><i class="fas fa-redo-alt"></i> refresh</button>
+                  <button class="btn tools refresh" type="button" (click)="refresh()"><i class="fas fa-redo-alt"></i> refresh</button>
                 </div>
                 <div class="input-group-append">
-                  <button class="btn tools" type="button"><i class="fas fa-trash"></i> clear all</button>
+                  <button class="btn tools clear-all" type="button" (click)="clearAll()"><i class="fas fa-trash"></i> clear all</button>
                 </div>
               </div>
             </form>
           </div>
           <div class="card-body ">
             <div class="table-responsive">
-              <table class="table items">
+              <table class="table items" [mfData]="endpointsFiltered" #mf="mfDataTable">
                 <thead>
                   <tr>
-                    <th scope="col" class="head">id</th>
-                    <th scope="col" class="head">address</th>
-                    <th scope="col" class="head">status</th>
-                    <th scope="col" class="head">connections</th>
-                    <th scope="col" class="head"></th>
+                    <th scope="col" class="head">
+                      <mfDefaultSorter by="id">id</mfDefaultSorter>
+                    </th>
+                    <th scope="col" class="head">
+                      <mfDefaultSorter by="name">address</mfDefaultSorter>
+                    </th>
+                    <th scope="col" class="head">
+                      <mfDefaultSorter by="connections">connections</mfDefaultSorter>
+                    </th>
+                    <th scope="col" class="head">
+                      status
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngIf="!endpoints || endpoints.length === 0">
+                  <tr *ngIf="!endpointList || endpointList.length === 0">
                     <td colspan="4" class="text-muted no-data">No Data...</td>
                   </tr>
-                  <tr *ngFor="let _ of endpoints">
+                  <tr *ngFor="let _ of mf.data">
                     <td class="ellipsis">
                       {{_.id}}
                     </td>
                     <td>
-                      {{_.address}}
-                    </td>
-                    <td>
-                      {{_.status}}
+                      {{_.name}}
                     </td>
                     <td class="ellipsis">
                       {{_.connections}}
                     </td>
                     <td>
-                      <div ngbDropdown class="d-inline-block" style="position: static;">
-                        <button class="btn text-primary" id="dropdown" ngbDropdownToggle>action</button>
-                        <div class="drop-area" ngbDropdownMenu aria-labelledby="dropdown">
-                          <li>
-                            <button ngbDropdownItem>Action - 1</button>
-                            <button ngbDropdownItem>Another Action</button>
-                            <button ngbDropdownItem>Something else is here</button>
-                          </li>
-                        </div>
-                      </div>
+                      <select type="text" (change)="changeStatus($event.target.value)" >
+                        <option *ngFor="let status of orderStatuses(_.actualStatus)" [value]="status">{{status}}</option>
+                      </select>
                     </td>
                   </tr>
                 </tbody>

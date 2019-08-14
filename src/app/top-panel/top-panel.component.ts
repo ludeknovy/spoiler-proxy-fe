@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EndpointsService } from '../endpoints.service';
 
 @Component({
   selector: 'app-top-panel',
@@ -6,12 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-panel.component.css']
 })
 export class TopPanelComponent implements OnInit {
-  private status: boolean;
-  constructor() {
-    this.status = true;
+
+  constructor(
+    private endpointsService: EndpointsService,
+  ) {
   }
 
+  status;
+  version;
+  port;
+
   ngOnInit() {
+    this.endpointsService.getStatus()
+      .subscribe((_) => {
+        this.status = _.socksProxyRunning;
+        this.version = _.version;
+        this.port = _.socksPort;
+      });
   }
 
 }

@@ -11,7 +11,7 @@ export class InfoModalComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
   ) {
-    this.version = 'X.Y.Z';
+    this.version = null;
   }
 
   ngOnInit() {

@@ -11,11 +11,8 @@ export class EndpointsService {
   private endpointList = new BehaviorSubject<EndpointListResponse>({
     endpointList: [],
     endpointStatuses: [],
-    socksPort: null,
-    socksProxyRunning: false,
-    version: undefined
   });
-  public scenarios$ = this.endpointList.asObservable();
+  public endpointList$ = this.endpointList.asObservable();
 
   constructor(
     private endpointsApiService: EndpointsApiService
@@ -24,5 +21,14 @@ export class EndpointsService {
   fetchEndpointList() {
     this.endpointsApiService.fetchEndpointList()
       .subscribe(_ => this.endpointList.next(_));
+  }
+
+  clearEndpoints() {
+    this.endpointsApiService.clearEndpoints()
+      .subscribe(_ => this.endpointList.next({endpointList: [], endpointStatuses: []}));
+  }
+
+  getStatus() {
+    return this.endpointsApiService.getStatus();
   }
 }

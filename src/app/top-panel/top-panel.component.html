@@ -7,7 +7,7 @@
     
       </li>
     </ul>
-    <span class="status-desc"><i class="fas fa-circle" [ngClass]="(status===true)?'recording':'stopped'"></i></span>
+    <span class="status-desc" *ngIf="status !== undefined"><i class="fas fa-circle" [ngClass]="(status===true)?'recording':'stopped'"></i></span>
 
     <div>
       <app-info-modal></app-info-modal>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EndpointListResponse, ChangeStatusBody } from './endpoints.api.service.model';
+import { EndpointListResponse, ChangeStatusBody, StatusResponse } from './endpoints.api.service.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +21,9 @@ export class EndpointsApiService {
 
   changeStatusById(body: ChangeStatusBody): Observable<undefined> {
     return this.http.post<undefined>('change-status-by-id', body);
+  }
+
+  getStatus(): Observable<StatusResponse> {
+    return this.http.get<StatusResponse>('get-status');
   }
 }

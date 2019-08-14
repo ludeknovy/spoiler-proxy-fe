@@ -8,6 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EndpointsComponent } from './endpoints/endpoints.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestHttpInterceptor } from './http-interceptor';
+import { DataTableModule } from 'angular-6-datatable';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,9 @@ import { RequestHttpInterceptor } from './http-interceptor';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
+    DataTableModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {
