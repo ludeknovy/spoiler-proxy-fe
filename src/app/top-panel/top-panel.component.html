@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg top-bar">
+  <a class="navbar-brand text-white" routerLink="/" routerLinkActive="active">Spoiler Proxy</a>
+
+  <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+    
+      </li>
+    </ul>
+    <span class="status-desc"><i class="fas fa-circle" [ngClass]="(status===true)?'recording':'stopped'"></i></span>
+
+    <div>
+      <app-info-modal></app-info-modal>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
