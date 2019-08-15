@@ -14,15 +14,16 @@ export class TopPanelComponent implements OnInit {
   }
 
   status;
-  version;
-  port;
+  proxyInfo;
 
   ngOnInit() {
     this.endpointsService.getStatus()
       .subscribe((_) => {
         this.status = _.socksProxyRunning;
-        this.version = _.version;
-        this.port = _.socksPort;
+        this.proxyInfo = {
+          version: _.version,
+          port: _.socksPort
+        };
       });
   }
 

@@ -1,15 +1,17 @@
 <ng-template #content let-modal>
   <div class="modal-header">
+      <input type="text" style="display:none" />
     <h4 class="modal-title" id="modal-basic-title">Info</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-      <p>current version: {{version}}</p>
+      <p>Current version: {{proxyInfo.version}}</p>
+      <p>Proxy port: {{proxyInfo.port}}</p>
       <p>
-          <a href="swagger-ui.html">API documentation</a> for automated tests.<br>
-          <a href="https://www.spoilerproxy.com">Documentation.</a>
+          <a href="http://localhost:8484/swagger-ui.html">API documentation</a><br>
+          <a href="https://www.spoilerproxy.com">Spoiler Proxy Documentation</a>
       </p>
 
   </div>

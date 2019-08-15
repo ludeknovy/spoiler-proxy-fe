@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,11 +7,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./info-modal.component.css']
 })
 export class InfoModalComponent implements OnInit {
-  private version: string;
+  @Input() proxyInfo: any;
+
   constructor(
     private modalService: NgbModal,
   ) {
-    this.version = null;
   }
 
   ngOnInit() {
