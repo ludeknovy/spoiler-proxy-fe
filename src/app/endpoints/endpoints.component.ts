@@ -63,13 +63,15 @@ export class EndpointsComponent implements OnInit {
 
   changeStatus(status, id) {
     // change status for current data
-    const updatedEndpoints = this.endpointsFiltered.map(_ =>
-      _.id === id
-        ? { ..._, actualStatus: status }
-        : _
-    );
-    this.endpointList = updatedEndpoints;
-    this.endpointsFiltered = updatedEndpoints;
+
+    const [epListUpdated, epFilteredUpdated] = [this.endpointList, this.endpointsFiltered]
+      .map((_) =>
+        _.map((__) => __.id === id
+          ? { ...__, actualStatus: status }
+          : __));
+    this.endpointList = epListUpdated;
+    this.endpointsFiltered = epFilteredUpdated;
+
     // send request to backend to actual state
     this.endpointsService.changeStatusById(id, this.availableStatuses.find(_ => _.display === status).value)
       .subscribe(
@@ -81,8 +83,8 @@ export class EndpointsComponent implements OnInit {
     const colors = [
       { value: 'ON', color: '#36B37E' },
       { value: 'OFF', color: '#FF5630' },
-      { value: 'NO_REPLY', color: '#FFAB00'},
-      { value: 'SLOW', color: '#00B8D9'}
+      { value: 'NO_REPLY', color: '#FFAB00' },
+      { value: 'SLOW', color: '#00B8D9' }
     ];
     const color = colors.find((_) => _.value === status);
     return color ? color.color : `grey`;
