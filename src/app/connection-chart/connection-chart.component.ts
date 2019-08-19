@@ -33,18 +33,22 @@ export class ConnectionChartComponent implements OnInit {
         text: ''
       },
       yAxis: {
-        gridLineColor: '#b7b7b717',
+        gridLineColor: 'ffffff',
+        allowDecimals: false,
         title: {
           text: 'Connections'
         },
       },
       plotOptions: {
         areaspline: {
-          fillOpacity: 0.2
+          fillOpacity: 0.08
         }
       },
       xAxis: {
-        categories: [],
+        lineColor: 'ffffff',
+        labels: { enabled: false },
+        tickLength: 0,
+        allowDecimals: false,
       },
       legend: { enabled: false },
     });
