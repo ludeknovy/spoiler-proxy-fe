@@ -27,7 +27,8 @@ export class EndpointsApiService {
     return this.http.get<StatusResponse>('get-status');
   }
 
-  getConnectionGraphGrouped(): Observable<ConnectonGraphResponse> {
+  getConnectionGraphGrouped() {
     return this.http.get<ConnectonGraphResponse>('get-connection-graph-grouped');
   }
+
 }
