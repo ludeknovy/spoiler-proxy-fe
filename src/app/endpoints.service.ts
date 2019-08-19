@@ -34,6 +34,8 @@ export class EndpointsService {
 
   changeStatusById(id, status) {
     return this.endpointsApiService.changeStatusById({connectionId: id, state: status });
+  }
+
   getColorBasedOnStatus(status) {
     const colors = [
       { value: 'on', display: 'ON', color: '#36B37E' },
