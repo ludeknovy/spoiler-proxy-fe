@@ -34,5 +34,14 @@ export class EndpointsService {
 
   changeStatusById(id, status) {
     return this.endpointsApiService.changeStatusById({connectionId: id, state: status });
+  getColorBasedOnStatus(status) {
+    const colors = [
+      { value: 'on', display: 'ON', color: '#36B37E' },
+      { value: 'off', display: 'OFF', color: '#FF5630' },
+      { value: 'noReply', display: 'NO_REPLY', color: '#FFAB00' },
+      { value: 'slow', display: 'SLOW', color: '#00B8D9' }
+    ];
+    const color = colors.find((_) => _.value === status || _.display === status);
+    return color ? color.color : `grey`;
   }
 }
