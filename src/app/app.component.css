@@ -1,1 +1,30 @@
 
+.content-container {
+  padding-left: 200px;
+  padding-right: 200px;
+  background-color: white;
+  padding-top: 25px;
+  min-height: 100%;
+  width: 100%;;
+  position: absolute;
+}
+
+@media (max-width: 1550px) {
+  .content-container  {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
+@media (max-width: 1350px) {
+  .content-container {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+@media (max-width: 1150px) {
+  .content-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
