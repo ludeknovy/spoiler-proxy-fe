@@ -16,8 +16,8 @@ before_deploy:
 - ls -la
 - tar -zcvf build-${TRAVIS_TAG}.tar.gz dist
 
-# deploy:
-#   provider: releases
-#   api_key: "${GH_TOKEN}"
-#   file: "/dist/*"
-#   skip_cleanup: true
+deploy:
+  provider: releases
+  api_key: "${GH_TOKEN}"
+  file: "/dist/*"
+  skip_cleanup: true
