@@ -6,7 +6,7 @@ import { EndpointListResponse } from '../endpoints.api.service.model';
 @Component({
   selector: 'app-endpoints',
   templateUrl: './endpoints.component.html',
-  styleUrls: ['./endpoints.component.css', '../../shared-styles.scss']
+  styleUrls: ['./endpoints.component.css']
 })
 export class EndpointsComponent implements OnInit {
   endpointList$: Observable<EndpointListResponse>;
