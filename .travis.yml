@@ -19,5 +19,5 @@ before_deploy:
 deploy:
   provider: releases
   api_key: "${GH_TOKEN}"
-  file: "/dist/*"
+  file: "build-${TRAVIS_TAG}.tar.gz"
   skip_cleanup: true
