@@ -2,6 +2,15 @@ env:
   matrix:
     secure: BppOO8T7kbHctAK1cjvPkDAMp3/Yuq3D15M7q0+YNVYt9XKn95xwkqg/1ItcO44ctlAyoWpx913eBcI39xKmK8NY9Tdaeth3TSRv/9BoNs9ULN3EUxc40swA+q2Sc/bD5fhDsyRm7RJE6kMTY8vYedAT3eOEWt7mG2VvbDqmXYZxkJ5KNHigbAay60eGmfGE/MbU28y5Pi/aiQABw4aRwyvBIZixJrcCEoYwh8lJ2jyYFgWnvVdATY4VKrVp+eMpgmqtwPWJ8NOtkf+t90ViD76J60h09BMxM4kSQc03Dz9q/qJ2LsfXestZS5jrDKFeVPX/4SP/Iq5G9eXc70Du9kybfEtNBsDdIq/ZkWXhFquledD4oODQgqG8iFF2ItW57tDktW4is4XHijOB8p+kgFF54sdLWd6nR3QI5/kely6fKbIkDatqsfplR+9qbM1svW5AkQJW6XWn8R/hbGWexj6eZ2Qn7Ty6cIzEMMbSc4O1GYdyYJ0v63dwSdkChxiFgYgusVoOoPUSgSuM4S/T7x/+j44N4o0zkJnPvF1TLHa9OBItB7X18zXxDZxbbJHtqi6D4pgwY08NoF+PSPx5logSxd2veWGDLxoU/+Z4mHJACOAZ1RpjWjwwPvUK65deqzatIovhkoSFSx9SRVAivRMQAKGabkjuADtZrMMcOow=
 
+language: node_js
+node_js: '10'
+cache: npm
+
+install:
+  npm install
+
+script:
+  - npm run build
 
 deploy:
   provider: releases
