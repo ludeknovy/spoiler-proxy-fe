@@ -1,1 +1,10 @@
 
+.main {
+  padding-left: 200px;
+  padding-right: 200px;
+  background-color: white;
+  padding-top: 25px;
+  min-height: 100%;
+  width: 100%;;
+  position: absolute;
+}

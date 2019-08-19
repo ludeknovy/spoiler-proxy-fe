@@ -25,7 +25,7 @@ export class EndpointsService {
 
   clearEndpoints() {
     this.endpointsApiService.clearEndpoints()
-      .subscribe(_ => this.endpointList.next({endpointList: [], endpointStatuses: []}));
+      .subscribe(_ => this.endpointList.next({ endpointList: [], endpointStatuses: [] }));
   }
 
   getStatus() {
@@ -33,7 +33,13 @@ export class EndpointsService {
   }
 
   changeStatusById(id, status) {
-    return this.endpointsApiService.changeStatusById({connectionId: id, state: status });
+    return this.endpointsApiService.changeStatusById({ connectionId: id, state: status });
+  }
+
+  getConnectionGraphGrouped() {
+    return this.endpointsApiService.getConnectionGraphGrouped();
+  }
+
   getColorBasedOnStatus(status) {
     const colors = [
       { value: 'on', display: 'ON', color: '#36B37E' },

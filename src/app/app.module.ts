@@ -10,13 +10,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestHttpInterceptor } from './http-interceptor';
 import { DataTableModule } from 'angular-6-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartModule } from 'angular-highcharts';
+import { ConnectionChartComponent } from './connection-chart/connection-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopPanelComponent,
     InfoModalComponent,
-    EndpointsComponent
+    EndpointsComponent,
+    ConnectionChartComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DataTableModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartModule,
   ],
   providers: [
     {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EndpointListResponse, ChangeStatusBody, StatusResponse } from './endpoints.api.service.model';
+import { EndpointListResponse, ChangeStatusBody, StatusResponse, ConnectonGraphResponse } from './endpoints.api.service.model';
 
 @Injectable({
   providedIn: 'root'
