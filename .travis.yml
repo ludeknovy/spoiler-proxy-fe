@@ -17,5 +17,3 @@ deploy:
   api_key: "${GH_TOKEN}"
   file: "dist/*"
   skip_cleanup: true
-  on:
-    tags: true
