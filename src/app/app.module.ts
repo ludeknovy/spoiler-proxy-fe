@@ -10,6 +10,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestHttpInterceptor } from './http-interceptor';
 import { DataTableModule } from 'angular-6-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StorageServiceModule } from 'angular-webstorage-service';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DataTableModule,
     FormsModule,
     ReactiveFormsModule,
+    StorageServiceModule
   ],
   providers: [
     {

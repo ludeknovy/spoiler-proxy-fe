@@ -78,6 +78,10 @@ td {
   color: #0052CC;
 }
 
+.autorefresh {
+  width: 140px;
+}
+
 
 .items {
   margin-top: 25px;
