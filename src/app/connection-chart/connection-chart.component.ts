@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription, timer } from 'rxjs';
+import { Subscription, timer, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { EndpointsService } from '../endpoints.service';
 import { Chart } from 'highcharts';
 import * as Highcharts from 'highcharts';
+import { ConnectonGraphResponse } from '../endpoints.api.service.model';
 
 @Component({
   selector: 'app-connection-chart',
@@ -15,10 +16,13 @@ export class ConnectionChartComponent implements OnInit {
   connectionChart: Chart;
   subscription: Subscription;
   graphData;
+  connectionGraphGrouped: Observable<ConnectonGraphResponse>;
+
 
   constructor(
     private endpointService: EndpointsService
   ) {
+    this.connectionGraphGrouped = this.endpointService.connectionGraphGrouped$;
   }
 
 
@@ -52,9 +56,7 @@ export class ConnectionChartComponent implements OnInit {
       },
       legend: { enabled: false },
     });
-    this.subscription = timer(0, 5000).pipe(
-      switchMap(() => this.endpointService.getConnectionGraphGrouped())
-    ).subscribe(result => {
+    this.connectionGraphGrouped.subscribe(result => {
       const statuses: any = Array.from(new Set([].concat.apply([], result.items.map(_ => _.grouped.map(__ => __.status)))));
       const data = result.items.map((_) => {
         return _.grouped.map(__ => ({ x: _.time, y: __.count, name: __.status }));

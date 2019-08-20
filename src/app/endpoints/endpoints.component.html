@@ -7,15 +7,11 @@
             <input class="form-control" id="label-filter" type="search" placeholder="search address"
               (keyup)='search($event.target.value)'>
             <div class="input-group-append">
-              <button class="btn tools refresh" type="button" (click)="refresh()"><i class="fas fa-redo-alt"></i>
-                refresh</button>
             </div>
             <div class="input-group-append">
-              <button class="btn tools clear-all" type="button" (click)="clearAll()"><i class="fas fa-trash"></i> clear
+              <button class="btn tools clear-all" title="auto-refresh" type="button" (click)="clearAll()"><i
+                  class="fas fa-trash"></i> clear
                 all</button>
-            </div>
-            <div class="input-group-append">
-                <button class="btn tools autorefresh" type="button" (click)="changeAuroRefresh()">auto refresh: <span [className]="autoRefresh === true ? 'on' : 'off'">{{autoRefresh === true ? 'ON ' : 'OFF'}}</span></button>
             </div>
           </div>
         </form>
@@ -54,10 +50,19 @@
                   {{_.connections}}
                 </td>
                 <td>
-                  <select type="text" (change)="changeStatus($event.target.value, _.id)"
+                  <div ngbDropdown class="d-inline-block">
+                    <button [ngStyle]="{'background-color': getColor(_.actualStatus)}" (click)="onFocus()" (focusout)="outFocus()" class="btn btn-sm" id="dropdownBasic1" ngbDropdownToggle>{{_.actualStatus}}</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button class="btn btn-sm" *ngFor="let status of orderStatuses(_.actualStatus)" (click)="changeStatus(status, _.id)" ngbDropdownItem>{{status}}</button>
+                    </div>
+                  </div>
+
+
+                  <!-- <select type="text" (mouseout)="outFocus()" (focusin)="onFocus()"
+                    (change)="changeStatus($event.target.value, _.id)"
                     [ngStyle]="{'background-color': getColor(_.actualStatus)}">
                     <option *ngFor="let status of orderStatuses(_.actualStatus)" [value]="status">{{status}}</option>
-                  </select>
+                  </select> -->
                 </td>
               </tr>
             </tbody>

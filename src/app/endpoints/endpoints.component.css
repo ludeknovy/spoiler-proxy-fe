@@ -74,25 +74,9 @@ td {
   color: red
 }
 
-.refresh:hover, .autorefresh:hover {
-  color: #0052CC;
-}
-
-.autorefresh {
-  width: 140px;
-}
-
 
 .items {
   margin-top: 25px;
-}
-
-.on {
-  color: green
-}
-
-.off {
-  color: red
 }
 
 input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }

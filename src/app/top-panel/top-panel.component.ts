@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EndpointsService } from '../endpoints.service';
+import { AutoRefreshService } from '../auto-refresh.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-top-panel',
@@ -8,15 +11,22 @@ import { EndpointsService } from '../endpoints.service';
 })
 export class TopPanelComponent implements OnInit {
 
+  autoRefresh: boolean;
+  autoRefresh$: Observable<boolean>;
   constructor(
     private endpointsService: EndpointsService,
+    private autoRefreshService: AutoRefreshService
   ) {
+    this.autoRefresh$ = this.autoRefreshService.autoRefresh$;
   }
 
   status;
   proxyInfo;
 
   ngOnInit() {
+    this.autoRefresh$.subscribe((_) => this.autoRefresh = _);
+    this.autoRefreshService.loadData();
+    this.autoRefreshService.initRefreshInterval();
     this.endpointsService.getStatus()
       .subscribe((_) => {
         this.status = _.socksProxyRunning;
@@ -26,5 +36,17 @@ export class TopPanelComponent implements OnInit {
         };
       });
   }
+
+  changeAutoRefresh() {
+    this.autoRefreshService.changeAutoRefresh();
+  }
+
+
+  loadData() {
+    this.autoRefreshService.loadData();
+  }
+
+
+
 
 }
