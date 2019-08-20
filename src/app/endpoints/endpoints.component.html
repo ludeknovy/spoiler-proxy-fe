@@ -14,6 +14,9 @@
               <button class="btn tools clear-all" type="button" (click)="clearAll()"><i class="fas fa-trash"></i> clear
                 all</button>
             </div>
+            <div class="input-group-append">
+                <button class="btn tools autorefresh" type="button" (click)="changeAuroRefresh()">auto refresh: <span [className]="autoRefresh === true ? 'on' : 'off'">{{autoRefresh === true ? 'ON ' : 'OFF'}}</span></button>
+            </div>
           </div>
         </form>
       </div>

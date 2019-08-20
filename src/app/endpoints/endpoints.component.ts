@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EndpointsService } from '../endpoints.service';
-import { Observable } from 'rxjs';
+import { Observable, interval } from 'rxjs';
 import { EndpointListResponse } from '../endpoints.api.service.model';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-endpoints',
@@ -13,6 +14,7 @@ export class EndpointsComponent implements OnInit {
 
   constructor(
     private endpointsService: EndpointsService,
+    private localStorageService: LocalStorageService
   ) {
     this.endpointList$ = endpointsService.endpointList$;
   }
@@ -20,9 +22,13 @@ export class EndpointsComponent implements OnInit {
   availableStatuses;
   endpointList;
   endpointsFiltered;
+  autoRefresh;
+  refreshInterval;
 
   ngOnInit() {
     this.endpointsService.fetchEndpointList();
+    this.autoRefresh = this.getAutoRefreshFromStorage();
+    this.setRefreshInterval();
     this.endpointList$.subscribe((_) => {
       this.availableStatuses = _.endpointStatuses;
       this.endpointList = _.endpointList.map((__) => {
@@ -41,6 +47,18 @@ export class EndpointsComponent implements OnInit {
       );
     } else {
       this.endpointsFiltered = dataToFilter;
+    }
+  }
+
+  private setRefreshInterval() {
+    if (this.autoRefresh) {
+      this.refreshInterval = interval(5000).subscribe(() => {
+        return this.refresh();
+      });
+    } else {
+      if (this.refreshInterval) {
+        this.refreshInterval.unsubscribe();
+      }
     }
   }
 
@@ -81,6 +99,20 @@ export class EndpointsComponent implements OnInit {
 
   getColor(status) {
     return this.endpointsService.getColorBasedOnStatus(status);
+  }
+
+  getAutoRefreshFromStorage() {
+    const value = this.localStorageService.getFromStorage('autoRefresh');
+    if (value === null) {
+      return true;
+    }
+    return value;
+  }
+
+  changeAuroRefresh() {
+    this.autoRefresh = !this.autoRefresh;
+    this.localStorageService.updateStorage('autoRefresh', this.autoRefresh);
+    this.setRefreshInterval();
   }
 
 

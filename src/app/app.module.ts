@@ -12,6 +12,8 @@ import { DataTableModule } from 'angular-6-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartModule } from 'angular-highcharts';
 import { ConnectionChartComponent } from './connection-chart/connection-chart.component';
+import { StorageServiceModule } from 'angular-webstorage-service';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { ConnectionChartComponent } from './connection-chart/connection-chart.co
     FormsModule,
     ReactiveFormsModule,
     ChartModule,
+    StorageServiceModule
   ],
   providers: [
     {

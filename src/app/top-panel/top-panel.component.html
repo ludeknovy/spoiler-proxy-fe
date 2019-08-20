@@ -9,7 +9,6 @@
     </ul>
     <span class="status-desc" *ngIf="status !== undefined"><i class="fas fa-circle" [ngClass]="(status===true)?'recording':'stopped'"></i></span>
     <span class="status-desc" *ngIf="!status"><i class="fas fa-circle" [ngClass]="'stopped'"></i></span>
-
     <div>
       <app-info-modal [proxyInfo]="proxyInfo"></app-info-modal>
     </div>
