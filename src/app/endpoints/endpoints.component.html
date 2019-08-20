@@ -56,13 +56,6 @@
                       <button class="btn btn-sm" *ngFor="let status of orderStatuses(_.actualStatus)" (click)="changeStatus(status, _.id)" ngbDropdownItem>{{status}}</button>
                     </div>
                   </div>
-
-
-                  <!-- <select type="text" (mouseout)="outFocus()" (focusin)="onFocus()"
-                    (change)="changeStatus($event.target.value, _.id)"
-                    [ngStyle]="{'background-color': getColor(_.actualStatus)}">
-                    <option *ngFor="let status of orderStatuses(_.actualStatus)" [value]="status">{{status}}</option>
-                  </select> -->
                 </td>
               </tr>
             </tbody>
