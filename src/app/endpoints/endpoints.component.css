@@ -1,6 +1,7 @@
 .endpoints {
   border: none;
-  margin-top: 20px
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .endpoints .card-body {
