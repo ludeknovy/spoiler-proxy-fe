@@ -2,25 +2,15 @@
   <div class="col">
     <div class="card endpoints">
       <div class="card-header">
-        <form class="form-inline-sm" style="float: right">
+        <h6 class="header-text">Endpoints</h6>
+        <form class="form-inline" style="float: right">
           <div class="input-group input-group-sm">
             <input class="form-control" id="label-filter" type="search" placeholder="search address"
               (keyup)='search($event.target.value)'>
-            <div class="input-group-append">
-              <button class="btn tools refresh" type="button" (click)="refresh()"><i class="fas fa-redo-alt"></i>
-                refresh</button>
-            </div>
-            <div class="input-group-append">
-              <button class="btn tools clear-all" type="button" (click)="clearAll()"><i class="fas fa-trash"></i> clear
-                all</button>
-            </div>
-            <div class="input-group-append">
-                <button class="btn tools autorefresh" type="button" (click)="changeAuroRefresh()">auto refresh: <span [className]="autoRefresh === true ? 'on' : 'off'">{{autoRefresh === true ? 'ON ' : 'OFF'}}</span></button>
-            </div>
           </div>
         </form>
       </div>
-      <div class="card-body ">
+      <div class="card-body">
         <div class="table-responsive">
           <table class="table items" [mfData]="endpointsFiltered" #mf="mfDataTable">
             <thead>
@@ -54,10 +44,14 @@
                   {{_.connections}}
                 </td>
                 <td>
-                  <select type="text" (change)="changeStatus($event.target.value, _.id)"
-                    [ngStyle]="{'background-color': getColor(_.actualStatus)}">
-                    <option *ngFor="let status of orderStatuses(_.actualStatus)" [value]="status">{{status}}</option>
-                  </select>
+                  <div ngbDropdown class="d-inline-block" (openChange)="toggled($event)">
+                    <button [ngStyle]="{'background-color': getColor(_.actualStatus)}" class="btn btn-sm"
+                      id="dropdownBasic1" ngbDropdownToggle>{{_.actualStatus}}</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button class="btn btn-sm" *ngFor="let status of orderStatuses(_.actualStatus)"
+                        (click)="changeStatus(status, _.id)" ngbDropdownItem>{{status}}</button>
+                    </div>
+                  </div>
                 </td>
               </tr>
             </tbody>

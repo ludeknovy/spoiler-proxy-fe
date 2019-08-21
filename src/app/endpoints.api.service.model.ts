@@ -27,3 +27,16 @@ export interface ChangeStatusBody {
   state: string;
 }
 
+export interface ConnectonGraphResponse {
+  items: GraphItem[];
+}
+
+interface GraphItem {
+  time: number;
+  grouped: [
+    {
+      status: string;
+      count: number;
+    }
+  ];
+}

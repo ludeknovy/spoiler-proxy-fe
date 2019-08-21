@@ -1,9 +1,9 @@
 
 .content-container {
-  padding-left: 200px;
-  padding-right: 200px;
-  background-color: white;
-  padding-top: 25px;
+  padding-left: 220px;
+  padding-right: 220px;
+  background-color: #f0f1f4;
+  padding-top: 75px;
   min-height: 100%;
   width: 100%;;
   position: absolute;
@@ -11,20 +11,20 @@
 
 @media (max-width: 1550px) {
   .content-container  {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 120px;
+    padding-right: 120px;
   }
 }
 
 @media (max-width: 1350px) {
   .content-container {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 70px;
+    padding-right: 70px;
   }
 }
 @media (max-width: 1150px) {
   .content-container {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EndpointListResponse, ChangeStatusBody, StatusResponse } from './endpoints.api.service.model';
+import { EndpointListResponse, ChangeStatusBody, StatusResponse, ConnectonGraphResponse } from './endpoints.api.service.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,10 @@ export class EndpointsApiService {
 
   getStatus(): Observable<StatusResponse> {
     return this.http.get<StatusResponse>('get-status');
+  }
+
+  getConnectionGraphGrouped() {
+    return this.http.get<ConnectonGraphResponse>('get-connection-graph-grouped');
   }
 
 }

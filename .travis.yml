@@ -10,15 +10,15 @@ install:
   npm install
 
 script:
-  - npm run build
+  - npm run build --prod
 
 before_deploy:
-- tar -zcvf build-${TRAVIS_TAG}.tar.gz dist
+- tar -zcvf build-${TRAVIS_TAG}.zip dist
 
 deploy:
   provider: releases
   api_key: "${GH_TOKEN}"
-  file: "build-${TRAVIS_TAG}.tar.gz"
+  file: "build-${TRAVIS_TAG}.zip"
   skip_cleanup: true
   on:
     tags: true

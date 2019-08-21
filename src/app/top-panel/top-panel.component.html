@@ -1,13 +1,28 @@
-<nav class="navbar navbar-expand-lg top-bar">
+<nav class="navbar navbar-expand-sm top-bar fixed-top">
   <a class="navbar-brand text-white" routerLink="/" routerLinkActive="active">Spoiler Proxy</a>
+
+  <button class="navbar-toggler text-white" type="button" (click)="toggleNavbar()">
+      <i class="fas fa-ellipsis-h"></i>
+  </button>
 
   <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-    
+
       </li>
     </ul>
-    <span class="status-desc" *ngIf="status !== undefined"><i class="fas fa-circle" [ngClass]="(status===true)?'recording':'stopped'"></i></span>
+
+    <button [disabled]="autoRefresh" class="btn refresh btn-sm" type="button" (click)="loadData()"><i
+        class="fas fa-redo-alt"></i>
+      refresh</button>
+    <button class="btn autorefresh text-white btn-sm" title="auto refresh" type="button"
+      (click)="changeAutoRefresh()"><span [className]="autoRefresh === true ? 'on' : 'off'"><i class="fas fa-sync"></i>
+        auto refresh</span></button>
+    <button class="btn tools clear-all btn-sm" title="auto-refresh" type="button" (click)="clearAll()"><i
+        class="fas fa-trash"></i> clear
+      all</button>
+    <span class="status-desc" *ngIf="status !== undefined"><i class="fas fa-circle"
+        [ngClass]="(status===true)?'recording':'stopped'"></i></span>
     <span class="status-desc" *ngIf="!status"><i class="fas fa-circle" [ngClass]="'stopped'"></i></span>
     <div>
       <app-info-modal [proxyInfo]="proxyInfo"></app-info-modal>

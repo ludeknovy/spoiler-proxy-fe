@@ -3,6 +3,7 @@ import { EndpointsService } from '../endpoints.service';
 import { Observable, interval } from 'rxjs';
 import { EndpointListResponse } from '../endpoints.api.service.model';
 import { LocalStorageService } from '../local-storage.service';
+import { AutoRefreshService } from '../auto-refresh.service';
 
 @Component({
   selector: 'app-endpoints',
@@ -14,7 +15,7 @@ export class EndpointsComponent implements OnInit {
 
   constructor(
     private endpointsService: EndpointsService,
-    private localStorageService: LocalStorageService
+    private autoRefreshService: AutoRefreshService
   ) {
     this.endpointList$ = endpointsService.endpointList$;
   }
@@ -22,13 +23,8 @@ export class EndpointsComponent implements OnInit {
   availableStatuses;
   endpointList;
   endpointsFiltered;
-  autoRefresh;
-  refreshInterval;
 
   ngOnInit() {
-    this.endpointsService.fetchEndpointList();
-    this.autoRefresh = this.getAutoRefreshFromStorage();
-    this.setRefreshInterval();
     this.endpointList$.subscribe((_) => {
       this.availableStatuses = _.endpointStatuses;
       this.endpointList = _.endpointList.map((__) => {
@@ -50,34 +46,15 @@ export class EndpointsComponent implements OnInit {
     }
   }
 
-  private setRefreshInterval() {
-    if (this.autoRefresh) {
-      this.refreshInterval = interval(5000).subscribe(() => {
-        return this.refresh();
-      });
-    } else {
-      if (this.refreshInterval) {
-        this.refreshInterval.unsubscribe();
-      }
-    }
-  }
-
   getActualStatus(value) {
     return value;
   }
 
   orderStatuses(value) {
     const statuses = this.availableStatuses.filter((_) => _.display !== value).map((_) => _.display);
-    return [value, ...statuses];
+    return statuses;
   }
 
-  refresh() {
-    this.endpointsService.fetchEndpointList();
-  }
-
-  clearAll() {
-    this.endpointsService.clearEndpoints();
-  }
 
   changeStatus(status, id) {
     // change status for current data
@@ -93,7 +70,7 @@ export class EndpointsComponent implements OnInit {
     // send request to backend to actual state
     this.endpointsService.changeStatusById(id, this.availableStatuses.find(_ => _.display === status).value)
       .subscribe(
-        res => res,
+        res => this.autoRefreshService.continue(),
         err => this.endpointsService.fetchEndpointList());
   }
 
@@ -101,20 +78,7 @@ export class EndpointsComponent implements OnInit {
     return this.endpointsService.getColorBasedOnStatus(status);
   }
 
-  getAutoRefreshFromStorage() {
-    const value = this.localStorageService.getFromStorage('autoRefresh');
-    if (value === null) {
-      return true;
-    }
-    return value;
+  toggled(isOpen) {
+    isOpen ? this.autoRefreshService.pause() : this.autoRefreshService.continue();
   }
-
-  changeAuroRefresh() {
-    this.autoRefresh = !this.autoRefresh;
-    this.localStorageService.updateStorage('autoRefresh', this.autoRefresh);
-    this.setRefreshInterval();
-  }
-
-
-
 }
