@@ -10,7 +10,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestHttpInterceptor } from './http-interceptor';
 import { DataTableModule } from 'angular-6-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ChartModule } from 'angular-highcharts';
 import { ConnectionChartComponent } from './connection-chart/connection-chart.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
 
@@ -31,7 +30,6 @@ import { StorageServiceModule } from 'angular-webstorage-service';
     DataTableModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartModule,
     StorageServiceModule
   ],
   providers: [

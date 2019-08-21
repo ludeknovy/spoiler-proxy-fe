@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription, timer, Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { EndpointsService } from '../endpoints.service';
 import { Chart } from 'highcharts';
 import * as Highcharts from 'highcharts';
