@@ -44,7 +44,8 @@ export class ConnectionChartComponent implements OnInit {
       },
       plotOptions: {
         areaspline: {
-          fillOpacity: 0.08
+          fillOpacity: 0.7,
+          stacking: 'normal',
         }
       },
       xAxis: {
