@@ -46,6 +46,10 @@ export class TopPanelComponent implements OnInit {
     this.autoRefreshService.loadData();
   }
 
+  clearAll() {
+    this.endpointsService.clearEndpoints();
+  }
+
 
 
 

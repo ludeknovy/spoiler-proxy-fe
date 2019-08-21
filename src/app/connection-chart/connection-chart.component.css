@@ -1,0 +1,10 @@
+.connections {
+  border: none;
+}
+
+.connections .card-header {
+  border-top: #6554C0 solid;
+  background-color: white;
+  border-bottom: none;
+  color: #253858;
+}

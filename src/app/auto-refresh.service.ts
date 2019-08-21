@@ -66,7 +66,6 @@ export class AutoRefreshService {
   }
 
   continue() {
-    console.log("continue")
     if (this.shouldContinue) {
       this.changeAutoRefresh();
       this.shouldContinue = false;

@@ -25,7 +25,7 @@
 }
 
 .top-bar {
-  background-color: rgba(9, 30, 66, 0.77);
+  background-color: rgba(9, 30, 66);
 }
 
 
@@ -175,9 +175,16 @@ a {
   color: #B3D4FF;
 }
 
-
 .btn:focus, .btn:active:focus, .btn.active:focus{
   outline:none;
   box-shadow:none;
+}
+
+.clear-all:hover {
+  color: red
+}
+
+.clear-all {
+  color: white;
 }
 

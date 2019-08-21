@@ -55,9 +55,6 @@ export class EndpointsComponent implements OnInit {
     return statuses;
   }
 
-  clearAll() {
-    this.endpointsService.clearEndpoints();
-  }
 
   changeStatus(status, id) {
     // change status for current data
@@ -81,16 +78,7 @@ export class EndpointsComponent implements OnInit {
     return this.endpointsService.getColorBasedOnStatus(status);
   }
 
-  onFocus() {
-    // pause auto-refresh
-    console.log("focus on")
-    this.autoRefreshService.pause();
-
-  }
-
-  outFocus() {
-    // continue auto-refresh
-    console.log("focus out")
-    this.autoRefreshService.continue();
+  toggled(isOpen) {
+    isOpen ? this.autoRefreshService.pause() : this.autoRefreshService.continue();
   }
 }
