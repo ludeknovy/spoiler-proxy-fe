@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EndpointsService } from '../endpoints.service';
-import { Observable, interval } from 'rxjs';
+import { Observable } from 'rxjs';
 import { EndpointListResponse } from '../endpoints.api.service.model';
-import { LocalStorageService } from '../local-storage.service';
 import { AutoRefreshService } from '../auto-refresh.service';
 
 @Component({
@@ -23,6 +22,7 @@ export class EndpointsComponent implements OnInit {
   availableStatuses;
   endpointList;
   endpointsFiltered;
+  searchTerm;
 
   ngOnInit() {
     this.endpointList$.subscribe((_) => {
@@ -31,18 +31,23 @@ export class EndpointsComponent implements OnInit {
         __.actualStatus = this.availableStatuses.find((s) => s.value === __.actualStatus).display;
         return __;
       });
-      this.endpointsFiltered = this.endpointList;
+
+      if (this.searchTerm) {
+        this.search(this.searchTerm);
+      } else {
+        this.endpointsFiltered = this.endpointList;
+      }
     });
   }
 
   search(term: string) {
-    const dataToFilter = this.endpointList;
+    this.searchTerm = term;
     if (term) {
-      this.endpointsFiltered = dataToFilter.filter(x =>
+      this.endpointsFiltered = this.endpointList.filter(x =>
         x.name.trim().toLowerCase().includes(term.trim().toLowerCase())
       );
     } else {
-      this.endpointsFiltered = dataToFilter;
+      this.endpointsFiltered = this.endpointList;
     }
   }
 
