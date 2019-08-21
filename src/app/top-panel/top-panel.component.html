@@ -1,5 +1,9 @@
-<nav class="navbar navbar-expand-lg top-bar fixed-top">
+<nav class="navbar navbar-expand-sm top-bar fixed-top">
   <a class="navbar-brand text-white" routerLink="/" routerLinkActive="active">Spoiler Proxy</a>
+
+  <button class="navbar-toggler text-white" type="button" (click)="toggleNavbar()">
+      <i class="fas fa-ellipsis-h"></i>
+  </button>
 
   <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
     <ul class="navbar-nav mr-auto">
@@ -7,6 +11,7 @@
 
       </li>
     </ul>
+
     <button [disabled]="autoRefresh" class="btn refresh btn-sm" type="button" (click)="loadData()"><i
         class="fas fa-redo-alt"></i>
       refresh</button>

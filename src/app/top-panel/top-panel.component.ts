@@ -22,6 +22,7 @@ export class TopPanelComponent implements OnInit {
 
   status;
   proxyInfo;
+  navbarOpen = false;
 
   ngOnInit() {
     this.autoRefresh$.subscribe((_) => this.autoRefresh = _);
@@ -50,7 +51,9 @@ export class TopPanelComponent implements OnInit {
     this.endpointsService.clearEndpoints();
   }
 
-
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
 
 
 }
