@@ -27,11 +27,15 @@
                 <th scope="col" class="head">
                   status
                 </th>
+                <th scope="col" class="head">
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr *ngIf="!endpointList || endpointList.length === 0">
-                <td colspan="4" class="text-muted no-data">No data. Please redirect traffic from your application to the <a href="https://spoilerproxy.com/redirect-all-traffic-from-your-application-to-spoiler-proxy/">spoiler proxy</a> first.</td>
+                <td colspan="4" class="text-muted no-data">No data. Please redirect traffic from your application to the
+                  <a href="https://spoilerproxy.com/redirect-all-traffic-from-your-application-to-spoiler-proxy/">spoiler
+                    proxy</a> first.</td>
               </tr>
               <tr *ngFor="let _ of mf.data;">
                 <td class="ellipsis">
@@ -44,14 +48,18 @@
                   {{_.connections}}
                 </td>
                 <td>
-                  <div ngbDropdown class="d-inline-block" (openChange)="toggled($event)">
+                  <div ngbDropdown display="dynamic" container="body" class="d-inline-block" (openChange)="toggled($event)">
                     <button [ngStyle]="{'background-color': getColor(_.actualStatus)}" class="btn btn-sm"
-                      id="dropdownBasic1" ngbDropdownToggle>{{_.actualStatus}}</button>
+                      id="dropdown" ngbDropdownToggle>{{_.actualStatus}}</button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                       <button class="btn btn-sm" *ngFor="let status of orderStatuses(_.actualStatus)"
                         (click)="changeStatus(status, _.id)" ngbDropdownItem>{{status}}</button>
                     </div>
                   </div>
+                </td>
+                <td>
+                  <button class="btn btn-sm clear" (click)="clearEndpoint(_.id)"><i class="fas fa-trash"></i>
+                  </button>
                 </td>
               </tr>
             </tbody>

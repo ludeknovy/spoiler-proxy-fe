@@ -20,6 +20,7 @@ interface EndpointList {
 interface EndpointStatuses {
   value: string;
   display: string;
+  color: string;
 }
 
 export interface ChangeStatusBody {

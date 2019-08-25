@@ -30,6 +30,10 @@ export class EndpointsService {
       .subscribe(_ => this.endpointList.next({ endpointList: [], endpointStatuses: [] }));
   }
 
+  clearEndpoint(connectionId) {
+    return this.endpointsApiService.clearEndpoint(connectionId);
+  }
+
   getStatus() {
     return this.endpointsApiService.getStatus();
   }
@@ -44,13 +48,7 @@ export class EndpointsService {
   }
 
   getColorBasedOnStatus(status) {
-    const colors = [
-      { value: 'on', display: 'ON', color: '#36B37E' },
-      { value: 'off', display: 'OFF', color: '#FF5630' },
-      { value: 'noReply', display: 'NO_REPLY', color: '#FFAB00' },
-      { value: 'slow', display: 'SLOW', color: '#00B8D9' }
-    ];
-    const color = colors.find((_) => _.value === status || _.display === status);
+    const color = this.endpointList.value.endpointStatuses.find((_) => _.value === status || _.display === status);
     return color ? color.color : `grey`;
   }
 }

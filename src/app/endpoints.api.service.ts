@@ -19,6 +19,10 @@ export class EndpointsApiService {
     return this.http.post<undefined>(`clear-endpoints`, undefined);
   }
 
+  clearEndpoint(connectionId): Observable<undefined> {
+    return this.http.post<undefined>(`clear-endpoint`, { connectionId });
+  }
+
   changeStatusById(body: ChangeStatusBody): Observable<undefined> {
     return this.http.post<undefined>('change-status-by-id', body);
   }

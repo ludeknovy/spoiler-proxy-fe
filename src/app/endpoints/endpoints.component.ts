@@ -86,4 +86,12 @@ export class EndpointsComponent implements OnInit {
   toggled(isOpen) {
     isOpen ? this.autoRefreshService.pause() : this.autoRefreshService.continue();
   }
+
+  clearEndpoint(id) {
+    this.endpointsService.clearEndpoint(id).subscribe(_ => {
+      this.endpointsService.fetchEndpointList();
+      return _;
+    });
+  }
+
 }
